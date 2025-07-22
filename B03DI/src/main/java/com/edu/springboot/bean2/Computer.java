@@ -10,7 +10,7 @@ Computer macBook = new Computer() 와 같은 의미이다.
  */
 @Component("macBook")
 public class Computer {
-	
+	  
 	//멤버변수는 지정한 값으로 초기화한다.
 	@Value("M1")
 	private String cpu;
