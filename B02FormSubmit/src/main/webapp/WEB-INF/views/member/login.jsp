@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
                         <td align="center"><img src="./images/login_logo.gif" /></td>
                     </tr>
                 </table>
-                <form name="myform" action="" method="post">
+                <form name="myform" action="loginProcess.do" method="post">
                 <table width="470" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <td width="350">

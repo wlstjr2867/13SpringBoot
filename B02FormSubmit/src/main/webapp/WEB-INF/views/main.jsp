@@ -25,18 +25,18 @@
 		<li><a href="/sub.do">sub.do</a></li>
 	</ul>
 	
-	<h2>퀴즈]회원가입폼에서 전송된 값</h2>
-	<ul>
-		<li><a href="/memberRegist.do">memberRegist.do</a></li>
-		<li><a href="/registProcess.do">registProcess.do</a></li>
-	</ul>
-	
 	<h2>폼값전송</h2>
 	<ul>
 		<li><a href="form1.do?name=손오공&age=11">내장객체</a></li>
 		<li><a href="form2.do?name=저팔계&age=22">어노테이션</a></li>
 		<li><a href="form3.do?name=사오정&age=33">커맨드객체</a></li>
 		<li><a href="form4/삼장법사/44">경로변수</a></li>
+	</ul>
+	
+	<h2>퀴즈]회원가입폼에서 전송된 값</h2>
+	<ul>
+		<li><a href="/memberRegist.do">회원가입</a></li>
+		<li><a href="/memberLogin.do">로그인</a></li>
 	</ul>
 </body>
 </html>

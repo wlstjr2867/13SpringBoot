@@ -75,14 +75,14 @@ public class MainController {
 	추가해야한다.
 	 */
 	@RequestMapping("/writeAction2.do")
-	public String writeAction2(@ModelAttribute("dto") @Validated BoardDTO boardDTO,
+	public String writeAction2(@ModelAttribute("dto") @Validated BoardVO boardVO,
 			BindingResult result){
 		String page = "result";
-		System.out.println(boardDTO);
+		System.out.println(boardVO);
 		
 		//검증을 위한 클래스를 별도로 정의할 필요가 없으므로 주석처리 
 //		BoardValidator validator = new BoardValidator();
-//		validator.validate(boardDTO, result);
+//		validator.validate(boardVO, result);
 		
 		//폼값 검증에 문제가 생긴경우 if문의 블럭이 실행된다.
 		if(result.hasErrors()) {
