@@ -13,8 +13,8 @@ DAO 클래스의 부모 역할을 담당한다.
 @Service
 public interface IMemberService {
 	//회원정보추가
-	public List<MemberDTO> select();
-	//회원목록(리스트)
+	public List<MemberDTO> select(MemberDTO memberDTO);
+	//회원목록(리스트) : 검색 기능 추가로 메서드를 이와 같이 변경한다.(MemberDTO memberDTO 추가)
 	public int insert(MemberDTO memberDTO);
 	//회원정보조회
 	public MemberDTO selectOne(MemberDTO memberDTO);

@@ -28,11 +28,22 @@ public class MemberDAO implements IMemberService {
 	private JdbcTemplate jdbcTemplate;
 	
 	//회원목록
+	/*
+	부모 인터페이스에서 추상메서드를 수정하면 자식인 DAO클래스에서도
+	함께 변경해야한다.
+	*/
 	@Override
-	public List<MemberDTO> select() {
+	public List<MemberDTO> select(MemberDTO memberDTO) {
 		//회원 레코드를 가입일을 내림차순 정렬해서 인출하는 쿼리문
-		String sql = "select * from member order by regidate desc";
-		
+		String sql = "SELECT * FROM member";
+				
+			if(memberDTO.getSearchField()!=null &&
+					memberDTO.getSearchKeyword()!=null) {	
+				sql += " WHERE "+memberDTO.getSearchField()
+					+" LIKE '%"+memberDTO.getSearchKeyword()+"%' ";
+			}
+			sql	+= " ORDER BY regidate DESC";
+			System.out.println("쿼리문:"+ sql);
 		/*
 		query() 메서드를 통해 select쿼리문을 시행한다. 쿼리문 실행후
 		반환되는 ResultSet은 RowMapper가 자동으로 반복하여 DTO에 저장한 후

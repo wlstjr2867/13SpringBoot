@@ -17,12 +17,6 @@ import com.edu.springboot.jdbc.MemberDTO;
 @Controller
 public class MainController {
 
-    private final B06JdbcTemplateApplication b06JdbcTemplateApplication;
-
-    MainController(B06JdbcTemplateApplication b06JdbcTemplateApplication) {
-        this.b06JdbcTemplateApplication = b06JdbcTemplateApplication;
-    }
-	
 	@RequestMapping("/")
 	public String main() {
 		return "main";
@@ -37,9 +31,13 @@ public class MainController {
 	
 	//회원목록
 	@RequestMapping("/list.do")
-	public String member2(Model model) {
+	public String member2(Model model, MemberDTO memberDTO) {
 		//DAO select()메서드 호출 후 반환되는 List<MemberDTO>를 영역에 저장한다.
-		model.addAttribute("memberList", dao.select());
+		/*
+		검색기능추가 : 목록에서 사용자가 입력한 검색필드, 검색어를 DTO를 통해
+			한번에 받으므로, 이것을 DAO로 전달해야한다.
+		 */
+		model.addAttribute("memberList", dao.select(memberDTO));
 		return "list";
 	}
 	

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -9,6 +9,32 @@
 </head>
 <body>
 	<h2>회원리스트</h2>
+	
+	<script>
+	const formValidate = (fm) => {
+		//검색어가 빈값인지 확인하여 경고창 띄움
+		if(fm.searchKeyword.value=='') {
+			alert("검색어를 입력하세요");
+			fm.searchKeyword.focus();
+			return false;
+		}
+	}
+	</script>
+	<form onsubmit="return formValidate(this);">
+	<table border="1">
+	<tr>
+		<td>
+			<select name="searchField">
+				<option value="id">아이디</option>
+				<option value="name">이름</option>
+			</select>
+			<input type="text" name="searchKeyword" />
+			<input type="submit" value="검색" />
+		</td>
+	</tr>
+	</table>
+	</form>
+	
 	<table border="1">
 		<tr>
 			<th>아이디</th>
