@@ -53,6 +53,7 @@ public class MainController {
 	
 	@RequestMapping(value="/edit.do", method=RequestMethod.GET)
 	public String member3(MemberDTO memberDTO, Model model) {
+		System.out.println(memberDTO);
 		memberDTO = dao.selectOne(memberDTO);
 		model.addAttribute("dto", memberDTO);
 		return "edit";

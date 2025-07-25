@@ -11,3 +11,4 @@ public class BoardDTO {
 	private java.sql.Date postdate;
 	private int visitcount;
 }
+   

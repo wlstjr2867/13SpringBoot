@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.edu.springboot.jdbc.BoardDTO;
 import com.edu.springboot.jdbc.IBoardService;
 import com.edu.springboot.jdbc.ParameterDTO;
-import com.edu.springboot.utils.PagingUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
+import util.PagingUtil;
 
 @Controller
 public class MainController {
@@ -30,6 +31,11 @@ public class MainController {
 	@Autowired
 	IBoardService dao;
 	
+	@Value("${board.pageSize)")
+	private int pageSize;
+	@Value("${board.bloackPage}")
+	private int blockPage;
+	
 	@RequestMapping("/list.do")
 	public String boardList(Model model, HttpServletRequest req,
 			ParameterDTO parameterDTO) {
@@ -42,8 +48,8 @@ public class MainController {
 		int totalCount = dao.getTotalCount(parameterDTO);
 		
 		//페이징을 위한 설정값(하드코딩)
-		int pageSize = 10; //페이지 당 출력할 게시물의 갯수
-		int blockPage = 10; //한 블럭당 출력할 페이지번호의 갯수
+//		int pageSize = 10; //페이지 당 출력할 게시물의 갯수
+//		int blockPage = 5; //한 블럭당 출력할 페이지번호의 갯수
 		
 		/**
 		목록에 처음 진입할때는 페이지번호가 없으므로 1로 설정하고, 파라미터를 통해
@@ -60,6 +66,7 @@ public class MainController {
 		int start = (pageNum-1) * pageSize + 1;
 		int end = pageNum * pageSize;
 		//계산의 결과는 DTO에 저장
+		
 		parameterDTO.setStart(start);
 		parameterDTO.setEnd(end);
 		
@@ -107,4 +114,47 @@ public class MainController {
 		return "redirect:list.do";
 	}
 	
+	
+	
+	//열람 : 클릭시 전달되는 일련번호는 DTO를 통해 받은 후 사용
+	@RequestMapping("/view.do")
+	public String boardView(Model model, BoardDTO boardDTO) {
+		dao.visitCountPlus(boardDTO);
+		//DTO를 view함수 호출시 전달
+		boardDTO = dao.view(boardDTO);
+		
+		//레코드 중 내용은 줄바꿈 처리 후 다시 저장
+		boardDTO.setContent(boardDTO.getContent()
+				.replace("\r\n", "<br />"));
+		model.addAttribute("boardDTO", boardDTO);
+		return "view";
+	}
+	
+	//수정1 : 기존 내용을 읽어와서 수정폼에 설정
+	@GetMapping("/edit.do")
+	public String boardEditGet(Model model, BoardDTO boardDTO) {
+		//열람에서 사용했던 메서드를 그대로 사용
+		boardDTO = dao.view(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		return "edit";
+	}
+	//수정2 : 사용자가 입력한 내용을 전송하여 update 처리
+	@PostMapping("/edit.do")
+	public String boardEditPost(BoardDTO boardDTO) {
+		//수정 후 결과는 int형으로 반환
+		int result = dao.edit(boardDTO);
+		System.out.println("글수정결과:"+ result);
+		//수정이 완료되면 열람페이지로 이동. 일련번호가 파라미터로 전달됨.
+		return "redirect:view.do?idx="+ boardDTO.getIdx();
+	}
+	
+	//삭제 : request 내장객체를 통해 폼값 받음
+	@PostMapping("/delete.do")
+	public String boardDeletePost(HttpServletRequest req) {
+		//단일값을 인수로 전달
+		int result = dao.delete(req.getParameter("idx"));
+		System.out.println("글삭제결과:"+ result);
+		return "redirect:list.do";
+	}
+
 }

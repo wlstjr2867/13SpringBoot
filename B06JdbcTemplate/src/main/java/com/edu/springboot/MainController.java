@@ -16,12 +16,6 @@ import com.edu.springboot.jdbc.MemberDTO;
 
 @Controller
 public class MainController {
-
-    private final B06JdbcTemplateApplication b06JdbcTemplateApplication;
-
-    MainController(B06JdbcTemplateApplication b06JdbcTemplateApplication) {
-        this.b06JdbcTemplateApplication = b06JdbcTemplateApplication;
-    }
 	
 	@RequestMapping("/")
 	public String main() {
@@ -33,7 +27,7 @@ public class MainController {
 	DAO의 메서드를 호출할 수 있다 
 	*/
 	@Autowired
-	IMemberService dao;
+	IMemberService dao; // IMemberService dao = new MemberDAO(); 동작
 	
 	//회원목록
 	@RequestMapping("/list.do")

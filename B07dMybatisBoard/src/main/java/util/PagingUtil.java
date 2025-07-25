@@ -1,4 +1,4 @@
-package com.edu.springboot.utils;
+package util;
 
 public class PagingUtil {
 	public static String pagingImg(int totalRecordCount, int pageSize, int blockPage, int pageNum, String page) {
@@ -29,6 +29,7 @@ public class PagingUtil {
 		 * 4.페이지를 뿌려주는 로직 : blockPage의 수만큼 또는 마지막페이지가 될때까지 페이지를 출력한다.
 		 */
 		while (blockCount <= blockPage && intTemp <= totalPage) {
+			//이 로직이 페이지가 정해지면 숫자의 링크를 없애는 로직
 			if (intTemp == pageNum) {
 				pagingStr += "&nbsp;" + intTemp + "&nbsp;";
 			} else {

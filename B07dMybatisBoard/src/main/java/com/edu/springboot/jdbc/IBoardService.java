@@ -21,6 +21,7 @@ public interface IBoardService {
 	public int write(@Param("_name") String name,
 			@Param("_title") String title,
 			@Param("_content") String content);
+	public void visitCountPlus(BoardDTO boardDTO);
 	//열람
 	public BoardDTO view(BoardDTO boardDTO);
 	//수정
