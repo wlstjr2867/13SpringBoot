@@ -38,4 +38,12 @@
 		resultType="com.edu.springboot.restboard.BoardDTO">
 		SELECT * FROM board WHERE num=${num}
 	</select>
+	
+	<insert id="write"
+		parameterType="com.edu.springboot.restboard.ParameterDTO">
+		INSERT INTO board
+			(num, title, content, id, visitcount)
+		VALUES
+			(seq_board_num.nextval, #{title}, #{content}, #{id}, 0)
+	</insert>
 </mapper> 

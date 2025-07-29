@@ -16,4 +16,6 @@ public interface IBoardService {
 	public ArrayList<BoardDTO> search(ParameterDTO parameterDTO);
 	// 게시물 내용보기
 	public BoardDTO view(ParameterDTO parameterDTO);
+	
+	public int write(BoardDTO boardDTO);
 }
