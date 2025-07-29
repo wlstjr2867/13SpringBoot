@@ -10,7 +10,7 @@
 	<h2>티켓 구매 성공</h2>
 	아이디 : ${ticketDTO.userid } <br />
 	구매수 : ${ticketDTO.t_count } <br />
-	결제금액 : ${payDTO.amount } <br />
+	아이디 : ${payDTO.amount } <br />
 	<a href="buyTicket.do">티켓구매</a>
 </body>
 </html>

@@ -11,4 +11,5 @@
 	 
 	<a href="buyTicket.do">티켓구매</a>
 </body>
+
 </html>

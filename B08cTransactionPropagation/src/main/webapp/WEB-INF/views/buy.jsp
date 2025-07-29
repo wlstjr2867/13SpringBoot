@@ -32,13 +32,13 @@
 				<!-- DB에서 오류가 없더라도, Java코드에서 인위적인 에러를 발생시킬 수
 				있도록 하기 위한 체크박스  -->
 				<input type="checkbox" name="err_flag" value="1" />
-				티켓구매에서 예외 발생
+				티켓구매에서 예외발생 
 				<input type="checkbox" name="err_flag" value="2" />
-				회원입력에서 예외 발생 
+				회원입력에서 예외발생 
 			</td>			
 		</tr>
 	</table>
 	<input type="submit" value="전송하기" />
 	</form>
 </body>
-</html>
+</html> 

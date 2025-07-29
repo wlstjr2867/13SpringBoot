@@ -9,12 +9,12 @@
 <body>
 	<h2>스프링 부트 프로젝트</h2>
 	<ul>
-		<li><a href="/">루트</a></li>
+		<li><a href="/" >루트</a>	</li>
 	</ul>
 	
 	<h2>TransactionManager로 트랜잭션 처리</h2>
 	<ul>
-		<li><a href="/buyTicket.do">티켓구매</a></li>
+		<li><a href="./buyTicket.do" >티켓구매</a></li>
 	</ul>
 </body>
 </html>
