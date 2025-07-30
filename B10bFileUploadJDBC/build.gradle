@@ -55,3 +55,7 @@ dependencies {
 tasks.named('test') {
    useJUnitPlatform()
 }
+
+//웹애플리케이션 서버에 배포를 위한 설정
+bootWar.enabled = false
+war.enabled = true
